@@ -1,5 +1,5 @@
 <template>
-    <section class="home">
+    <section class="table">
     </section>
 </template>
 
