@@ -1,16 +1,11 @@
 <template>
-    <nav class="navbar">
-    </nav>
+  <nav class="navbar"></nav>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import Vue from "vue";
 
-export default Vue.extend({
-    
-})
+export default Vue.extend({});
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>
