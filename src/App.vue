@@ -1,19 +1,25 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">All Characters</router-link>
-      <router-link to="/favorites">Favorites</router-link>
-    </div>
+    <navbar></navbar>
     <main>
       <router-view />
     </main>
   </div>
 </template>
 
-<style lang="scss">
+<script lang="ts">
+import Vue from "vue";
+import Navbar from "./components/Navbar.vue";
 
-$primary: #11b0c8;
-$secondary: #a9b1bd;
+export default Vue.extend({
+  components: {
+    navbar: Navbar
+  }
+});
+</script>
+
+<style lang="scss">
+@import "./styles/color";
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -21,21 +27,5 @@ $secondary: #a9b1bd;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    color: $secondary;
-    font-weight: bold;
-    text-decoration: none;
-
-    &.router-link-exact-active {
-      border-bottom: 3px solid $primary;
-      color: $primary;
-      padding-bottom: 4px;
-    }
-  }
 }
 </style>
