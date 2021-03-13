@@ -24,11 +24,13 @@ export default Vue.extend({
     },
     width: {
       type: Number,
-      required: false
+      required: false,
+      default: 24
     },
     height: {
       type: Number,
-      required: false
+      required: false,
+      default: 24
     },
     preserveAspectRatio: {
       type: String || undefined,
@@ -38,4 +40,15 @@ export default Vue.extend({
 });
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+@import "../styles/color";
+
+svg {
+  cursor: pointer;
+  fill: $secondary;
+
+  &.selected {
+    fill: $primary;
+  }
+}
+</style>
