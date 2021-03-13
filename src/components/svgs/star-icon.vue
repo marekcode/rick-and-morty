@@ -20,7 +20,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import BaseSvg from "./Base-svg.vue";
+import BaseSvg from "../BaseSvg.vue";
 
 export default Vue.extend({
   components: {
