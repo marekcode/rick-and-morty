@@ -12,16 +12,22 @@
       </option>
     </select>
     <input type="text" />
-    <button type="button" />
+    <button type="button">
+      <search-icon />
+    </button>
   </section>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import { SearchOption } from "../types";
+import SearchIcon from "./svgs/search-icon.vue";
 
 export default Vue.extend({
   name: "Search",
+  components: {
+    "search-icon": SearchIcon
+  },
   data() {
     return {
       answers: ["Name", "Identifier", "Episode"]
@@ -69,7 +75,7 @@ export default Vue.extend({
     color: $secondary;
     padding: 14px;
 
-    &:active {
+    &:focus {
       outline: none;
     }
   }
@@ -77,6 +83,10 @@ export default Vue.extend({
   button {
     background: none;
     border: none;
+
+    &:focus {
+      outline: none;
+    }
   }
 }
 </style>
