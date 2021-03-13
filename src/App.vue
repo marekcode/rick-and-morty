@@ -1,6 +1,8 @@
 <template>
   <div id="app">
-    <navbar></navbar>
+    <header-app>
+      <navbar slot="menu"></navbar>
+    </header-app>
     <main>
       <router-view />
     </main>
@@ -9,11 +11,13 @@
 
 <script lang="ts">
 import Vue from "vue";
+import Header from "./components/Header.vue";
 import Navbar from "./components/Navbar.vue";
 
 export default Vue.extend({
   components: {
-    navbar: Navbar
+    navbar: Navbar,
+    "header-app": Header
   }
 });
 </script>
