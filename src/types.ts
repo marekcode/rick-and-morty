@@ -9,6 +9,11 @@ export enum RowType {
     normal = "TD"
 }
 
+export enum OperationType {
+    add = "add",
+    remove = "remove"
+}
+
 export interface CharacterType { 
     id: number,
     name: string,

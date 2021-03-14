@@ -74,27 +74,22 @@ export const store = new Vuex.Store({
       ],
       url: "https://rickandmortyapi.com/api/character/361",
       created: "2018-01-10T18:20:41.703Z"
-    }]
+    }],
   },
   getters: {
-    modifiedCharacters(state){
+    modifiedCharacters(state): Array<CharacterType>{
       return state.characters.map((character: CharacterType) => {
         const person = state.properties.reduce((newCharacter: Record<string, string>, property: string) => {
           newCharacter[property] = character[property];
           return newCharacter;
         }, {});
 
-        return person;
+        return person as CharacterType;
       });
     }
   },
-  mutations: {
-    updateCharacterSelection(state, id): void {
-      const person = state.characters.find(character => character.id === id) || {};
-      
-      person.selected = !person.selected;
-    }
-  },
+  mutations: {},
+  actions: {},
   modules: {
     character: Character,
     favorites: Favorites

@@ -1,6 +1,6 @@
 <template>
   <section class="home">
-    <tableApp></tableApp>
+    <tableApp :selected="false"></tableApp>
   </section>
 </template>
 

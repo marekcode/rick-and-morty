@@ -23,7 +23,11 @@
         <span v-else :key="name + index">{{ property }}</span>
       </template>
       <span :key="character.id" class="favorite">
-        <button type="button">
+        <button
+          type="button"
+          @click="updateFavo(character)"
+          :class="{ selected: selected }"
+        >
           <star-icon></star-icon>
         </button>
       </span>
@@ -33,7 +37,8 @@
 
 <script lang="ts">
 import Vue, { Component } from "vue";
-import { RowType } from "../types";
+import { mapActions } from "vuex";
+import { RowType, CharacterType, OperationType } from "../types";
 import starIcon from "./svgs/star-icon.vue";
 import maleIcon from "./svgs/male-icon.vue";
 import femaleIcon from "./svgs/female-icon.vue";
@@ -41,14 +46,21 @@ import closeIcon from "./svgs/close-icon.vue";
 import removeIcon from "./svgs/remove-icon.vue";
 
 export default Vue.extend({
-  components: { starIcon, maleIcon, femaleIcon, closeIcon, removeIcon },
   name: "TableApp",
+  props: {
+    selected: {
+      type: Boolean,
+      required: true
+    }
+  },
+  components: { starIcon, maleIcon, femaleIcon, closeIcon, removeIcon },
   data() {
     return {
       www: RowType
     };
   },
   methods: {
+    ...mapActions("favorites", ["initFavorites", "updateFavorites"]),
     genderIcon(property: string): Component {
       if (property === "Male") return maleIcon;
       if (property === "Female") return femaleIcon;
@@ -65,6 +77,12 @@ export default Vue.extend({
       return {
         "background-image": `url(${property})`
       };
+    },
+    updateFavo(character: CharacterType) {
+      const operation = this.selected
+        ? OperationType.remove
+        : OperationType.add;
+      this.$store.dispatch("updateFavorites", { character, operation });
     }
   },
   computed: {
@@ -72,7 +90,17 @@ export default Vue.extend({
       return this.$store.state.columns;
     },
     characters() {
-      return this.$store.getters.modifiedCharacters;
+      if (this.selected) {
+        return this.$store.state.favorites.favoritesList;
+      } else return this.$store.getters.modifiedCharacters;
+    }
+  },
+  created() {
+    if (this.selected) {
+      //get all characters from API
+    } else {
+      //get all characters from localStorage
+      this.$store.dispatch("initFavorites");
     }
   }
 });
