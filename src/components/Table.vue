@@ -23,9 +23,7 @@
         <span v-else :key="name + index">{{ property }}</span>
       </template>
       <span :key="character.id" class="favorite">
-        <button
-          type="button"
-        >
+        <button type="button">
           <star-icon></star-icon>
         </button>
       </span>
@@ -75,7 +73,7 @@ export default Vue.extend({
     },
     characters() {
       return this.$store.getters.modifiedCharacters;
-    },
+    }
   }
 });
 </script>
@@ -140,8 +138,8 @@ button {
   width: 36px;
 
   &:focus {
-      outline: none;
-    }
+    outline: none;
+  }
 
   svg {
     fill: $primary;

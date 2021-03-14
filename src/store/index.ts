@@ -2,7 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import Character from "./modules/character";
 import Favorites from "./modules/favorites";
-import CharacterType from "../types";
+import { CharacterType } from "../types";
 
 Vue.use(Vuex);
 
