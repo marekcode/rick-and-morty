@@ -1,97 +1,20 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import Character from "./modules/character";
+import Characters from "./modules/characters";
 import Favorites from "./modules/favorites";
-import { CharacterType } from "../types";
 
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
   state: {
+    baseUrl: "https://rickandmortyapi.com/api",
     columns: ["Photo", "Character ID", "Name", "Gender", "Species", "Last Eposode", "Add To Favorites"],
-    properties: ["image", "id", "name", "gender", "species", "episode"],
-    //fake data
-    characters: [{
-      id: 361,
-      name: "Toxic Rick",
-      status: "Dead",
-      species: "Humanoid",
-      type: "Rick's Toxic Side",
-      gender: "Male",
-      origin: {
-        "name": "Alien Spa",
-        "url": "https://rickandmortyapi.com/api/location/64"
-      },
-      location: {
-        "name": "Earth",
-        "url": "https://rickandmortyapi.com/api/location/20"
-      },
-      image: "https://rickandmortyapi.com/api/character/avatar/361.jpeg",
-      episode: [
-        "https://rickandmortyapi.com/api/episode/27"
-      ],
-      url: "https://rickandmortyapi.com/api/character/361",
-      created: "2018-01-10T18:20:41.703Z"
-    }, {
-      id: 362,
-      name: "Toxic Rick",
-      status: "Dead",
-      species: "Humanoid",
-      type: "Rick's Toxic Side",
-      gender: "Male",
-      origin: {
-        "name": "Alien Spa",
-        "url": "https://rickandmortyapi.com/api/location/64"
-      },
-      location: {
-        "name": "Earth",
-        "url": "https://rickandmortyapi.com/api/location/20"
-      },
-      image: "https://rickandmortyapi.com/api/character/avatar/361.jpeg",
-      episode: [
-        "https://rickandmortyapi.com/api/episode/27"
-      ],
-      url: "https://rickandmortyapi.com/api/character/361",
-      created: "2018-01-10T18:20:41.703Z"
-    }, {
-      id: 363,
-      name: "Toxic Rick",
-      status: "Dead",
-      species: "Humanoid",
-      type: "Rick's Toxic Side",
-      gender: "Male",
-      origin: {
-        "name": "Alien Spa",
-        "url": "https://rickandmortyapi.com/api/location/64"
-      },
-      location: {
-        "name": "Earth",
-        "url": "https://rickandmortyapi.com/api/location/20"
-      },
-      image: "https://rickandmortyapi.com/api/character/avatar/361.jpeg",
-      episode: [
-        "https://rickandmortyapi.com/api/episode/27"
-      ],
-      url: "https://rickandmortyapi.com/api/character/361",
-      created: "2018-01-10T18:20:41.703Z"
-    }],
   },
-  getters: {
-    modifiedCharacters(state): Array<CharacterType>{
-      return state.characters.map((character: CharacterType) => {
-        const person = state.properties.reduce((newCharacter: Record<string, string>, property: string) => {
-          newCharacter[property] = character[property];
-          return newCharacter;
-        }, {});
-
-        return person as CharacterType;
-      });
-    }
-  },
+  getters: {},
   mutations: {},
   actions: {},
   modules: {
-    character: Character,
+    character: Characters,
     favorites: Favorites
   }
 });

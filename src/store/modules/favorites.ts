@@ -1,6 +1,6 @@
 import { CharacterType, OperationType } from "../../types";
 import { getFavoritesCharacters } from "../helper"
-import character from "./character";
+import character from "./characters";
 
 export default ({
   state: {
