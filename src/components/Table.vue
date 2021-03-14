@@ -22,7 +22,7 @@
         </span>
         <span v-else :key="name + index">{{ property }}</span>
       </template>
-      <span :key="character.id" class="favorite">
+      <span :key="character.created" class="favorite">
         <button
           type="button"
           @click="updateFavo(character)"
@@ -61,6 +61,7 @@ export default Vue.extend({
   },
   methods: {
     ...mapActions("favorites", ["initFavorites", "updateFavorites"]),
+    ...mapActions("characters", ["getAllCharacters"]),
     genderIcon(property: string): Component {
       if (property === "Male") return maleIcon;
       if (property === "Female") return femaleIcon;
@@ -92,14 +93,15 @@ export default Vue.extend({
     characters() {
       if (this.selected) {
         return this.$store.state.favorites.favoritesList;
-      } else return this.$store.getters.modifiedCharacters;
+      }
+
+      return this.$store.getters.modifiedCharacters;
     }
   },
   created() {
-    if (this.selected) {
-      //get all characters from API
+    if (!this.selected) {
+      this.$store.dispatch("getAllCharacters");
     } else {
-      //get all characters from localStorage
       this.$store.dispatch("initFavorites");
     }
   }
